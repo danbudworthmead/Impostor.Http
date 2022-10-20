@@ -47,46 +47,16 @@ public class ListingManager
 
         // Find games that have not started yet.
         foreach (var game in this.gameManager.Games.Where(x =>
-            x.IsPublic &&
             x.GameState == GameStates.NotStarted &&
             x.PlayerCount < x.Options.MaxPlayers))
         {
-            // Check for options.
-            if ((map & (1 << (int)game.Options.Map)) == 0)
-            {
-                continue;
-            }
+            // Add to result.
+            yield return game;
 
-            if (language != game.Options.Keywords)
+            // Break out if we have enough.
+            if (++resultCount == maxListings)
             {
-                continue;
-            }
-
-            if (impostorCount != 0 && game.Options.NumImpostors != impostorCount)
-            {
-                continue;
-            }
-
-            bool addGame = true;
-            foreach (var filter in filters)
-            {
-                if (!filter(game))
-                {
-                    addGame = false;
-                    break;
-                }
-            }
-
-            if (addGame)
-            {
-                // Add to result.
-                yield return game;
-
-                // Break out if we have enough.
-                if (++resultCount == maxListings)
-                {
-                    yield break;
-                }
+                yield break;
             }
         }
     }

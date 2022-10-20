@@ -139,7 +139,7 @@ public class GamesController : ControllerBase
             this.Port = (ushort)game.PublicIp.Port;
             this.GameId = game.Code.Value;
             this.PlayerCount = game.PlayerCount;
-            this.HostName = game.Host?.Client.Name ?? "Unknown host";
+            this.HostName = game.DisplayName;
             this.HostPlatformName = "test";
             this.Platform = Platforms.StandaloneSteamPC;
             this.MaxPlayers = game.Options.MaxPlayers;

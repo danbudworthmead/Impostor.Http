@@ -17,6 +17,10 @@
     <Authors>miniduikboot</Authors>
   </PropertyGroup>
   
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>G:\GitHub\skeld.net 2.0\Impostor\src\Impostor.Server\bin\Debug\net6.0\plugins</OutputPath>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Impostor.Api" Version="1.7.2" />
     
